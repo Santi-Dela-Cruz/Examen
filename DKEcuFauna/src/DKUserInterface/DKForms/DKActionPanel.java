@@ -4,14 +4,33 @@ import DKUserInterface.DKCustomerController.DKPatButton;
 import DKUserInterface.DKCustomerController.DKPatComboBox;
 import DKUserInterface.DKCustomerController.DKPatPanel;
 import DKUserInterface.DKCustomerController.DKStyles;
+import java.util.List;
 
 import java.awt.*;
+
+import DKDataAccess.DKDAO.DKGenoAlimentoDAO;
+import DKDataAccess.DKDAO.DKIngestaNativaDAO;
 
 public class DKActionPanel extends DKPatPanel {
 
     public DKActionPanel() {
-        // Configuración del panel con bordes redondeados y fondo transparente
-        super(20, DKStyles.DKCOLOR_GREEN6); // Radio de 20px, verde con transparencia
+        super(20, DKStyles.DKCOLOR_GREEN6);
+
+        DKIngestaNativaDAO ingestaDAO = new DKIngestaNativaDAO();
+        DKGenoAlimentoDAO genoAlimentoDAO = new DKGenoAlimentoDAO();
+
+        List<String> ingestaItems;
+        List<String> genoAlimentoItems;
+
+        try {
+            ingestaItems = ingestaDAO.dkReadAll().stream().map(ingesta -> ingesta.getNombre()).toList();
+            genoAlimentoItems = genoAlimentoDAO.dkReadAll().stream().map(genoAlimento -> genoAlimento.getNombre())
+                    .toList();
+        } catch (Exception e) {
+            e.printStackTrace();
+            ingestaItems = List.of("Error al cargar");
+            genoAlimentoItems = List.of("Error al cargar");
+        }
 
         // Creas un boton con el CustomerStyle -> Este conserva las propiedades de los
         // botones
@@ -37,14 +56,14 @@ public class DKActionPanel extends DKPatPanel {
         // Contenido del panel
         gbc.gridx = 0;
         gbc.gridy = 0;
-        add(new DKPatComboBox(new String[] { "GenoAlimento" }), gbc);
+        add(new DKPatComboBox(genoAlimentoItems, "GenoAlimento"), gbc);
 
         gbc.gridx = 1;
         add(buttonAlimentarGA, gbc);
 
         gbc.gridx = 0;
         gbc.gridy = 1;
-        add(new DKPatComboBox(new String[] { "IngestaNativa" }), gbc);
+        add(new DKPatComboBox(ingestaItems, "IngestaNativa"), gbc);
 
         gbc.gridx = 1;
         add(buttonAlimentarIN, gbc);

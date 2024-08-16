@@ -9,8 +9,7 @@ import java.awt.*;
 public class DKBottomPanel extends DKPatPanel {
 
     public DKBottomPanel() {
-        // Configuración del panel con bordes redondeados y fondo transparente
-        super(15, DKStyles.DKCOLOR_GREEN8); // Radio de 15px, gris con transparencia
+        super(15, DKStyles.DKCOLOR_GREEN8);
         DKPatButton buttonEliminar = new DKPatButton("Eliminar", false, DKStyles.DKFONT_LANGOSTIONS_SMALL);
         DKPatButton buttonGuardar = new DKPatButton("Guardar", false, DKStyles.DKFONT_LANGOSTIONS_SMALL);
         buttonEliminar.setBackground(DKStyles.DKCOLOR_GREEN2);

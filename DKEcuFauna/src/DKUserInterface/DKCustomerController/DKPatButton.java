@@ -14,9 +14,9 @@ import java.awt.event.MouseListener;
 public class DKPatButton extends JButton implements MouseListener {
 
     private boolean isRound;
-    private Color hoverBackgroundColor = new Color(128, 128, 128, 128); // Gris con 50% de transparencia
-    private boolean isHovering = false; // Variable para rastrear si el ratón está encima
-    private Color originalForegroundColor; // Variable para guardar el color de texto original
+    private Color hoverBackgroundColor = new Color(128, 128, 128, 128);
+    private boolean isHovering = false;
+    private Color originalForegroundColor;
 
     public DKPatButton(String text, boolean isRound, Font customFont) {
         this.isRound = isRound;
@@ -25,26 +25,25 @@ public class DKPatButton extends JButton implements MouseListener {
 
     private void customizeComponent(String text, Font customFont) {
         setText(text);
-        setFont(customFont); // Usar la fuente personalizada pasada como parámetro
-        originalForegroundColor = Color.WHITE; // Guardar el color de texto original
+        setFont(customFont);
+        originalForegroundColor = Color.WHITE;
         setForeground(originalForegroundColor);
-        setOpaque(false); // Asegura que no se pinte el fondo rectangular
+        setOpaque(false);
         setFocusPainted(false);
-        setBorderPainted(false); // Desactivar el borde pintado
-        setContentAreaFilled(false); // No pintar el área del contenido
+        setBorderPainted(false);
+        setContentAreaFilled(false);
         setCursor(DKStyles.DKCURSOR_HAND);
         addMouseListener(this);
 
         if (isRound) {
-            setPreferredSize(new Dimension(40, 40)); // Tamaño ajustado a 40x40 píxeles para botones redondos
+            setPreferredSize(new Dimension(40, 40));
         } else {
-            setPreferredSize(new Dimension(200, 40)); // Tamaño ajustado para botones cuadrados más grandes
+            setPreferredSize(new Dimension(200, 40));
         }
     }
 
     @Override
     protected void paintComponent(Graphics g) {
-        // Habilitar anti-aliasing para bordes suaves
         Graphics2D g2 = (Graphics2D) g;
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
@@ -73,7 +72,6 @@ public class DKPatButton extends JButton implements MouseListener {
         g2.setColor(getForeground());
         g2.drawString(getText(), x, y);
 
-        // No llamamos a super.paintComponent(g) después de dibujar el texto
     }
 
     // Eliminar o comentar el método paintBorder para no dibujar ningún borde

@@ -7,7 +7,7 @@ import java.awt.event.MouseEvent;
 
 public class DKPatPanelBar extends JPanel {
 
-    private boolean isMaximized = false; // Variable para rastrear el estado de maximización
+    private boolean isMaximized = false;
     private Point previousLocation;
     private Dimension previousSize;
 
@@ -33,8 +33,6 @@ public class DKPatPanelBar extends JPanel {
         buttonPanel.setOpaque(false);
         buttonPanel.setBackground(DKStyles.DKCOLOR_GREEN1);
 
-        // Creación de botones con el nuevo constructor que permite personalizar la
-        // fuente y el texto
         DKPatButton closeButton = new DKPatButton("X", true, DKStyles.DKFONT_LANGOSTIONS_SMALL);
         DKPatButton minimizeButton = new DKPatButton("_", true, DKStyles.DKFONT_LANGOSTIONS_SMALL);
         DKPatButton maximizeButton = new DKPatButton("O", true, DKStyles.DKFONT_LANGOSTIONS_SMALL);
@@ -47,8 +45,8 @@ public class DKPatPanelBar extends JPanel {
         buttonPanel.add(maximizeButton);
         buttonPanel.add(closeButton);
 
-        add(titlePanel, BorderLayout.WEST); // Agregar el panel con el logo y el título al lado izquierdo
-        add(buttonPanel, BorderLayout.EAST); // Botones a la derecha
+        add(titlePanel, BorderLayout.WEST);
+        add(buttonPanel, BorderLayout.EAST);
 
         // Funcionalidad de los botones
         closeButton.addActionListener(e -> frame.dispose());
@@ -59,26 +57,20 @@ public class DKPatPanelBar extends JPanel {
 
         maximizeButton.addActionListener(e -> {
             if (isMaximized) {
-                // Restaurar al tamaño y posición anteriores
                 frame.setExtendedState(JFrame.NORMAL);
                 frame.setLocation(previousLocation);
                 frame.setSize(previousSize);
                 isMaximized = false;
             } else {
-                // Guardar la ubicación y tamaño actuales
                 previousLocation = frame.getLocation();
                 previousSize = frame.getSize();
-                // Maximizar la ventana
                 frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
                 isMaximized = true;
             }
         });
 
-        // Añadir un WindowListener para restaurar el estado de maximización después de
-        // minimizar
         frame.addWindowStateListener(e -> {
             if (e.getNewState() == JFrame.NORMAL && isMaximized) {
-                // Si la ventana se restaura después de ser minimizada y estaba maximizada
                 frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
             }
         });
@@ -94,7 +86,7 @@ public class DKPatPanelBar extends JPanel {
 
             @Override
             public void mouseDragged(MouseEvent e) {
-                if (!isMaximized) { // Solo permite mover la ventana si no está maximizada
+                if (!isMaximized) {
                     int x = frame.getLocation().x + e.getX() - initialClick.x;
                     int y = frame.getLocation().y + e.getY() - initialClick.y;
                     frame.setLocation(x, y);

@@ -9,8 +9,7 @@ import java.awt.*;
 public class DKHormigueroPanel extends DKPatPanel {
 
     public DKHormigueroPanel() {
-        // Configuración del panel con bordes redondeados y fondo transparente
-        super(20, DKStyles.DKCOLOR_GREEN5); // Mantiene el fondo del panel principal
+        super(20, DKStyles.DKCOLOR_GREEN5);
 
         setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
@@ -48,14 +47,14 @@ public class DKHormigueroPanel extends DKPatPanel {
         gbc.gridy = 1;
         gbc.gridwidth = 6;
         gbc.weightx = 1.0;
-        JPanel gridPanel = new JPanel(new GridLayout(3, 6, 10, 10)); // Ajuste del grid
-        gridPanel.setOpaque(false); // Hacer el gridPanel completamente transparente
+        JPanel gridPanel = new JPanel(new GridLayout(3, 6, 10, 10));
+        gridPanel.setOpaque(false);
 
         for (int i = 0; i < 18; i++) {
             JTextField field = new JTextField("");
             field.setEditable(false);
-            field.setBackground(Color.WHITE); // Si deseas también puedes quitar o ajustar este color
-            field.setPreferredSize(new Dimension(40, 25)); // Ajuste del tamaño a más rectangular
+            field.setBackground(Color.WHITE);
+            field.setPreferredSize(new Dimension(40, 25));
             gridPanel.add(field);
         }
         add(gridPanel, gbc);

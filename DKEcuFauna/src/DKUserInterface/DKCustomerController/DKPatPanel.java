@@ -25,7 +25,6 @@ public class DKPatPanel extends JPanel {
 
     @Override
     protected void paintComponent(Graphics g) {
-        // Habilitar anti-aliasing para bordes suaves
         Graphics2D g2 = (Graphics2D) g;
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
@@ -33,7 +32,6 @@ public class DKPatPanel extends JPanel {
         g2.setColor(backgroundColor);
         g2.fill(new RoundRectangle2D.Double(0, 0, getWidth(), getHeight(), cornerRadius, cornerRadius));
 
-        // No llamar a super.paintComponent(g) para evitar pintar el fondo por defecto
     }
 
     @Override
